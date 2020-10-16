@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: smarttimesheet-main-service
+  profiles:
+    active: development
+  cloud:
+    config:
+      uri: http://localhost:8888
+      label: dev
