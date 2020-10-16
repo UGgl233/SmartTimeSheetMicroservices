@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/discovery-server/discovery-server.iml" filepath="$PROJECT_DIR$/discovery-server/discovery-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/smarttimesheet-main-service/smarttimesheet-main-service.iml" filepath="$PROJECT_DIR$/smarttimesheet-main-service/smarttimesheet-main-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/timesheet-server/timesheet-server.iml" filepath="$PROJECT_DIR$/timesheet-server/timesheet-server.iml" />
     </modules>
   </component>
 </project>
