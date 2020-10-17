@@ -5,16 +5,13 @@ import com.smarttimesheet.timesheetserver.domain.Timesheet;
 import com.smarttimesheet.timesheetserver.repository.TimeSheetMongoRepository;
 import com.smarttimesheet.timesheetserver.service.TimesheetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/timeSheet")
 public class TimesheetController {
     @Autowired
     private TimesheetService service;
@@ -46,5 +43,13 @@ public class TimesheetController {
         }
         //add all the details from several timesheet into the list.
         return null;
+    }
+
+    // @PARAMS: Employee ID, starting week Ending
+    @GetMapping("/fetchMostRecent5Sheets")
+    public String fetchMostRecent5Sheets(@RequestParam String empId, @RequestParam String weekEnding) {
+        // @TODO: Get most recent 5 sheets
+
+        return "Got the most recent 5 sheets with empId: " + empId + " weekEnding: " + weekEnding;
     }
 }

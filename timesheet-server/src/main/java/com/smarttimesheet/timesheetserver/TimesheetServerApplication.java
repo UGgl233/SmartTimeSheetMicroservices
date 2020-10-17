@@ -10,13 +10,18 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-// public class TimesheetServerApplication implements CommandLineRunner {
 
-   public class TimesheetServerApplication {
+//public class TimesheetServerApplication implements CommandLineRunner {
+public class TimesheetServerApplication {
+
 //    @Autowired
 //    private TimeSheetMongoRepository repository;
 
-    public static void main(String[] args) { SpringApplication.run(TimesheetServerApplication.class, args); }
+    public static void main(String[] args) {
+//        System.out.println("test");
+        SpringApplication.run(TimesheetServerApplication.class, args);
+    }
+
 
 //    @Override
 //    public void run(String... args) throws Exception {
