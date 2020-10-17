@@ -1,5 +1,6 @@
 package com.smarttimesheet.timesheetserver.controller;
 
+import com.smarttimesheet.timesheetserver.domain.Details;
 import com.smarttimesheet.timesheetserver.domain.Timesheet;
 import com.smarttimesheet.timesheetserver.repository.TimeSheetMongoRepository;
 import com.smarttimesheet.timesheetserver.service.TimesheetService;
@@ -15,23 +16,33 @@ public class TimesheetController {
     @Autowired
     private TimesheetService service;
 
+    //get the details from several document
     @GetMapping("/Timesheet")
-    public List<String> getUsersById() {
+    public List<Details> getDeatilsByName() {
 
         service.saveDocument();
-        List<String> data = new ArrayList<>();
-        List<Timesheet> list = new ArrayList<>();
-        for (Timesheet time : service.findByName("Phillip")) {
-            list.add(time);
+//        List<String> data = new ArrayList<>();
+//        List<Timesheet> list = new ArrayList<>();
+//        for (Timesheet time : service.findByName("1")) {
+//            list.add(time);
+//        }
+//        String submission = list.get(0).getSubmissionStatus();
+//        String approval = list.get(0).getApprovalStatus();
+//        String name = list.get(0).getName();
+//        String details = list.get(0).getDetails().toString();
+//
+//        data.add(submission);
+//        data.add(approval);
+//        data.add(name);
+//        data.add(details);
+        //this list is used to stored the time sheet that matches the people.
+        List<Timesheet> sheet = new ArrayList<>();
+        List<Details> list = new ArrayList<>();
+        for (Timesheet time: service.findByName("1")){
+            sheet.add(time);
         }
-        String submission = list.get(0).getSubmissionStatus();
-        String approval = list.get(0).getApprovalStatus();
-        String name = list.get(0).getName();
-
-        data.add(submission);
-        data.add(approval);
-        data.add(name);
-        return data;
+        //add all the details from several timesheet into the list.
+        return null;
     }
 
     // @PARAMS: Employee ID, starting week Ending

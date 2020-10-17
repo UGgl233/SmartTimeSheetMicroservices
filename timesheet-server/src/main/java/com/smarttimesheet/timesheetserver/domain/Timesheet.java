@@ -16,6 +16,7 @@ public class Timesheet {
     private String submissionStatus;
     private String approvalStatus;
     private String weekEnding;
+    private int totalHours;
     private String comment;
     private List<Details> details;
 }
