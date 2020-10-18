@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class TimesheetService {
@@ -83,5 +84,22 @@ public class TimesheetService {
             }
         }
         return list;
+    }
+
+    // @Author UGGL
+    // Used for frontend details page which got all details for given name and weekending
+    public List<Details> findDetailsByNameAndWeekEnding(String name, String weekEnding) {
+        List<Timesheet> timeSheets = repository.findAllByWeekEndingAndName(weekEnding, name);
+        // Supposed to have only one.
+        return timeSheets.get(0).getDetails();
+    }
+
+    // @Author UGGL
+    // Used for frontend details page and will return a random time sheet
+    public List<Details> getRandomDetailByName(String name) {
+        Random rand = new Random();
+        List<Timesheet> timeSheets = repository.findByName(name);
+        // Get a random detail from the time sheet
+        return timeSheets.get(rand.nextInt(timeSheets.size())).getDetails();
     }
 }

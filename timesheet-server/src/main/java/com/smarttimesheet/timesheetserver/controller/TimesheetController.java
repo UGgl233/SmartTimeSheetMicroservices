@@ -27,6 +27,19 @@ public class TimesheetController {
         return service.findDetailsByName("1");
     }
 
+    // Get the details of a timeSheet by name and weekending
+    @GetMapping("/details")
+    public List<Details> getDetailsByNameAndWeekending(@RequestParam String name,
+                                                       @RequestParam String weekEnding) {
+        return service.findDetailsByNameAndWeekEnding(name, weekEnding);
+    }
+
+    // Get a random timeSheet details
+    @GetMapping("/randomOneDetails")
+    public List<Details> getRandomDetailByName(@RequestParam String name) {
+        return service.getRandomDetailByName(name);
+    }
+
     // @PARAMS: Employee ID, starting week Ending
     @GetMapping("/fetchMostRecent5Sheets")
     public String fetchMostRecent5Sheets(@RequestParam String empId, @RequestParam String weekEnding) {

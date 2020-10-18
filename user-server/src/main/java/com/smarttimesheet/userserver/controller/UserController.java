@@ -20,6 +20,7 @@ public class UserController {
         return userRepository.save(user);
     }
 
+    // This function is used for login
     @GetMapping("/login")
     public boolean login(String email, String password) {
         User user = userRepository.findByEmail(email);
@@ -29,6 +30,7 @@ public class UserController {
         return false;
     }
 
+    // This function is used for get profile
     @GetMapping("/user/{email}")
     public User getUserByEmail(@PathVariable String email) {
         User user = userRepository.findByEmail(email);

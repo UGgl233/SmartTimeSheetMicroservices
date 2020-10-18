@@ -9,5 +9,5 @@ import java.util.List;
 public interface TimeSheetMongoRepository extends MongoRepository<Timesheet, String>{
     List<Timesheet> findByName(String name);
     List<Details> findDetailsByName(String name);
-
+    List<Timesheet> findAllByWeekEndingAndName(String weekEnding, String name);
 }
