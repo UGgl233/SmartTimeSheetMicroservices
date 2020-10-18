@@ -4,8 +4,14 @@ import com.smarttimesheet.timesheetserver.domain.Details;
 import com.smarttimesheet.timesheetserver.domain.Timesheet;
 import com.smarttimesheet.timesheetserver.repository.TimeSheetMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+
 import java.util.List;
 
 @Service
@@ -16,13 +22,13 @@ public class TimesheetService {
     //insert document into MongoDB
     public void saveDocument(){
 
-        Details day1 = Details.builder().day("Monday").startingTime(9).endingTime(18).totalHours(18-9).build();
-        Details day2 = Details.builder().day("Tuesday").startingTime(9).endingTime(18).totalHours(18-9).build();
-        Details day3 = Details.builder().day("Wednesday").startingTime(9).endingTime(18).totalHours(18-9).build();
-        Details day4 = Details.builder().day("Thursday").startingTime(9).endingTime(18).totalHours(18-9).build();
-        Details day5 = Details.builder().day("Friday").startingTime(9).endingTime(17).totalHours(18-9).build();
-        Details day6 = Details.builder().day("Saturday").startingTime(-1).endingTime(-1).totalHours(0).build();
-        Details day7 = Details.builder().day("Sunday").startingTime(-1).endingTime(-1).totalHours(0).build();
+        Details day1 = Details.builder().date("3/11/2018").day("Monday").startingTime(9).endingTime(18).totalHours(18-9).build();
+        Details day2 = Details.builder().date("3/12/2018").day("Tuesday").startingTime(9).endingTime(18).totalHours(18-9).build();
+        Details day3 = Details.builder().date("3/13/2018").day("Wednesday").startingTime(9).endingTime(18).totalHours(18-9).build();
+        Details day4 = Details.builder().date("3/14/2018").day("Thursday").startingTime(9).endingTime(18).totalHours(18-9).build();
+        Details day5 = Details.builder().date("3/15/2018").day("Friday").startingTime(9).endingTime(17).totalHours(18-9).build();
+        Details day6 = Details.builder().date("3/16/2018").day("Saturday").startingTime(-1).endingTime(-1).totalHours(0).build();
+        Details day7 = Details.builder().date("3/17/2018").day("Sunday").startingTime(-1).endingTime(-1).totalHours(0).build();
 
         repository.deleteAll();
 
@@ -51,13 +57,31 @@ public class TimesheetService {
     public List<Timesheet> findAll(){ return repository.findAll(); }
 
     //return document by name
+    //need to get name from frontend
+    //todo
     public List<Timesheet> findByName(String name) {return repository.findByName(name);}
 
-    //find details by name
-//    public List<Details> findDetailsByName(String name) {
-//        List<Details> list = new ArrayList<>();
-//        repository.findByName("1").indexOf(Details.class);
-//
-//        return null;
+//        public ResponseEntity<List<Timesheet>> findByName(@RequestParam String name) {
+//        //name = "1";
+//        List<Timesheet> list = service.findByName("1");
+//        System.out.println(list);
+//        return new ResponseEntity<>(list, HttpStatus.OK);
 //    }
+
+
+    //find details by name
+    //need to get name from frontend
+    //todo
+    public List<Details> findDetailsByName(String name) {
+        List<Details> list = new ArrayList<>();
+        List<Timesheet> temp = repository.findByName("1");
+        for (Timesheet sheet: temp) {
+            List<Details> temp1 = sheet.getDetails();
+            System.out.println(temp1);
+            for (Details detail: temp1) {
+                list.add(detail);
+            }
+        }
+        return list;
+    }
 }

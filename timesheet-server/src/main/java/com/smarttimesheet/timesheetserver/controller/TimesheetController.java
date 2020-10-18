@@ -19,19 +19,12 @@ public class TimesheetController {
 
     //get the details from several document
     @GetMapping("/Timesheet")
-    public List<Timesheet> getDeatilsByName() {
-
+    public List<Details> getDeatilsByName(String name) {
         //service.saveDocument();
-        List<Timesheet> sheet = new ArrayList<>();
         //List<Details> list = new ArrayList<>();
-
-
-        for (Timesheet time: service.findByName("1")){
-            sheet.add(time);
-        }
+        //service.findDetailsByName("1");
         //add all the details from several timesheet into the list.
-
-        return sheet; 
+        return service.findDetailsByName("1");
     }
 
     // @PARAMS: Employee ID, starting week Ending
