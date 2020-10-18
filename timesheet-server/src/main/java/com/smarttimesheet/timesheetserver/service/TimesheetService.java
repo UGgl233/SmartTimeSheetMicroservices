@@ -33,10 +33,10 @@ public class TimesheetService {
 
         repository.deleteAll();
 
-        repository.save(Timesheet.builder().name("1").totalHours(45).submissionStatus("Complete").
+        repository.save(Timesheet.builder().name("uggl123@gmail.com").totalHours(45).submissionStatus("Complete").
                 approvalStatus("approved").weekEnding("3/17/2018").comment("1 Floating Day Required")
                 .details(Arrays.asList(day1, day2, day3, day4, day5, day6, day7)).build());
-        repository.save(Timesheet.builder().name("2").totalHours(40).submissionStatus("Not Complete").
+        repository.save(Timesheet.builder().name("uggl123@gmail.com").totalHours(40).submissionStatus("Not Complete").
                 approvalStatus("N/A").weekEnding("3/10/2018").comment("1 Floating Day Required")
                 .details(Arrays.asList(day1, day2, day3, day4, day5, day6, day7)).build());
         repository.save(Timesheet.builder().name("2").totalHours(35).submissionStatus("Not Complete").
