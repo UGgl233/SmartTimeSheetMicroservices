@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: user-server
+  profiles:
+    active: development
+  cloud:
+    config:
+      uri: http://localhost:8888
+      label: dev
