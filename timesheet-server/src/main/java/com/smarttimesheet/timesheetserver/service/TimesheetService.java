@@ -28,17 +28,24 @@ public class TimesheetService {
         Details day3 = Details.builder().date("3/13/2018").day("Wednesday").startingTime(9).endingTime(18).totalHours(18-9).build();
         Details day4 = Details.builder().date("3/14/2018").day("Thursday").startingTime(9).endingTime(18).totalHours(18-9).build();
         Details day5 = Details.builder().date("3/15/2018").day("Friday").startingTime(9).endingTime(17).totalHours(18-9).build();
-        Details day6 = Details.builder().date("3/16/2018").day("Saturday").startingTime(-1).endingTime(-1).totalHours(0).build();
-        Details day7 = Details.builder().date("3/17/2018").day("Sunday").startingTime(-1).endingTime(-1).totalHours(0).build();
+        Details day6 = Details.builder().date("3/16/2018").day("Saturday").startingTime(10).endingTime(19).totalHours(19-10).build();
+        Details day7 = Details.builder().date("3/17/2018").day("Sunday").startingTime(8).endingTime(16).totalHours(16-8).build();
 
-        repository.deleteAll();
+        Details day21 = Details.builder().date("3/4/2018").day("Monday").startingTime(9).endingTime(18).totalHours(18-9).build();
+        Details day22 = Details.builder().date("3/5/2018").day("Tuesday").startingTime(9).endingTime(18).totalHours(18-9).build();
+        Details day23 = Details.builder().date("3/6/2018").day("Wednesday").startingTime(9).endingTime(18).totalHours(18-9).build();
+        Details day24 = Details.builder().date("3/7/2018").day("Thursday").startingTime(9).endingTime(18).totalHours(18-9).build();
+        Details day25 = Details.builder().date("3/8/2018").day("Friday").startingTime(9).endingTime(17).totalHours(18-9).build();
+        Details day26 = Details.builder().date("3/9/2018").day("Saturday").startingTime(10).endingTime(19).totalHours(19-10).build();
+        Details day27 = Details.builder().date("3/10/2018").day("Sunday").startingTime(8).endingTime(16).totalHours(16-8).build();
+        //repository.deleteAll();
 
         repository.save(Timesheet.builder().name("uggl123@gmail.com").totalHours(45).submissionStatus("Complete").
                 approvalStatus("approved").weekEnding("3/17/2018").comment("1 Floating Day Required")
                 .details(Arrays.asList(day1, day2, day3, day4, day5, day6, day7)).build());
         repository.save(Timesheet.builder().name("uggl123@gmail.com").totalHours(40).submissionStatus("Not Complete").
                 approvalStatus("N/A").weekEnding("3/10/2018").comment("1 Floating Day Required")
-                .details(Arrays.asList(day1, day2, day3, day4, day5, day6, day7)).build());
+                .details(Arrays.asList(day21, day22, day23, day24, day25, day26, day27)).build());
         repository.save(Timesheet.builder().name("2").totalHours(35).submissionStatus("Not Complete").
                 approvalStatus("N/A").weekEnding("3/03/2018").comment("1 Floating Day Required")
                 .details(Arrays.asList(day1, day2, day3, day4, day5, day6, day7)).build());
@@ -54,25 +61,12 @@ public class TimesheetService {
 
     }
 
-    //return all document
     public List<Timesheet> findAll(){ return repository.findAll(); }
 
-    //return document by name
-    //need to get name from frontend
-    //todo
+
     public List<Timesheet> findByName(String name) {return repository.findByName(name);}
 
-//        public ResponseEntity<List<Timesheet>> findByName(@RequestParam String name) {
-//        //name = "1";
-//        List<Timesheet> list = service.findByName("1");
-//        System.out.println(list);
-//        return new ResponseEntity<>(list, HttpStatus.OK);
-//    }
 
-
-    //find details by name
-    //need to get name from frontend
-    //todo
     public List<Details> findDetailsByName(String name) {
         List<Details> list = new ArrayList<>();
         List<Timesheet> temp = repository.findByName("1");

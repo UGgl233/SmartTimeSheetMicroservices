@@ -22,34 +22,11 @@ public class SummaryController {
     @Autowired
     private TimesheetService service;
 
-
-    //return every week's summary
-    //get the same name from several document and return it
-//    public List<Timesheet> getAll(@RequestParam String name) {
-//
-//        service.saveDocument();
-//        List<Timesheet> list = service.findByName("1");
-//        System.out.println(list);
-//        return service.findByName("1");
-//
-//    }
-
     @GetMapping("/Summary")
     public ResponseEntity<List<Timesheet>> findByName(@RequestParam String name) {
-        //name = "1";
-        service.saveDocument();
         List<Timesheet> list = service.findByName(name);
         System.out.println(list);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
-
-//    public List<Timesheet> findByName(@RequestParam String name){
-//        service.saveDocument();
-//        List<Timesheet> list = service.findByName(name);
-//        System.out.println(list);
-//
-//        return list;
-//    }
-
 
 }

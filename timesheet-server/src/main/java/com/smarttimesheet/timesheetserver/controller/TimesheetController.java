@@ -20,10 +20,6 @@ public class TimesheetController {
     //get the details from several document
     @GetMapping("/Timesheet")
     public List<Details> getDeatilsByName(String name) {
-        //service.saveDocument();
-        //List<Details> list = new ArrayList<>();
-        //service.findDetailsByName("1");
-        //add all the details from several timesheet into the list.
         return service.findDetailsByName("1");
     }
 
