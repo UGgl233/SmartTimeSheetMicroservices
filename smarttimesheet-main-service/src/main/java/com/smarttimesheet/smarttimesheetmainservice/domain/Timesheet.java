@@ -1,17 +1,15 @@
-package com.smarttimesheet.smarttimesheetmainservice.entity;
-
-import com.smarttimesheet.smarttimesheetmainservice.domain.Details;
-import lombok.*;
-
-import java.io.Serializable;
+package com.smarttimesheet.smarttimesheetmainservice.domain;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-public class TimeSheetEntity implements Serializable {
+@Builder
+@Data
+public class Timesheet {
     private String id;
     private String name;
     private String submissionStatus;

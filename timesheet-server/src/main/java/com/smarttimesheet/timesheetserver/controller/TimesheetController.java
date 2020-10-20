@@ -4,18 +4,26 @@ import com.smarttimesheet.timesheetserver.domain.Details;
 import com.smarttimesheet.timesheetserver.domain.Timesheet;
 import com.smarttimesheet.timesheetserver.repository.TimeSheetMongoRepository;
 import com.smarttimesheet.timesheetserver.service.TimesheetService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/timeSheet")
 public class TimesheetController {
+
     @Autowired
     private TimesheetService service;
+
+    @Autowired
+    private TimeSheetMongoRepository timeSheetMongoRepository;
+
 
     //get the details from several document
     @GetMapping("/Timesheet")
@@ -42,5 +50,18 @@ public class TimesheetController {
         // @TODO: Get most recent 5 sheets
 
         return "Got the most recent 5 sheets with empId: " + empId + " weekEnding: " + weekEnding;
+    }
+
+    // @TEST purpose
+    @GetMapping("/test")
+    public Timesheet findTimeSheetById(@RequestParam String id) {
+        Optional<Timesheet> timesheet = timeSheetMongoRepository.findById(id);
+        if (timesheet.isPresent()) {
+            Timesheet temp = timesheet.get();
+            temp.setTotalHours(42);
+            timeSheetMongoRepository.save(temp);
+            return timesheet.get();
+        }
+        return null;
     }
 }

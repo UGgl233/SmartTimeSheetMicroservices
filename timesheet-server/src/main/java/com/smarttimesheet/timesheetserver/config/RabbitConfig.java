@@ -6,8 +6,11 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.listener.MessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 
 @Configuration
 public class RabbitConfig {
@@ -15,6 +18,18 @@ public class RabbitConfig {
     private static final String TIME_SHEET_CREATOR_QUEUE = "TimeSheetCreatorQueue";
     private static final String TIME_SHEET_EXCHANGE = "TimeSheetExchange";
     private static final String TIME_SHEET_ROUTING_KEY = "timeSheetCreatorKey";
+
+//    @Value("${timesheet.queue}")
+//    private String TIME_SHEET_CREATOR_QUEUE;
+//
+//    @Value("${timesheet.exchange}")
+//    private String TIME_SHEET_EXCHANGE;
+//
+//    @Value("${timesheet.routingkey}")
+//    private String TIME_SHEET_ROUTING_KEY;
+
+    @Autowired
+    private RabbitListenerForTimeSheetCreate rabbitListenerForTimeSheetCreate;
 
     @Bean
     Queue myTimeSheetQueue() {
@@ -54,7 +69,7 @@ public class RabbitConfig {
         SimpleMessageListenerContainer simpleMessageListenerContainer = new SimpleMessageListenerContainer();
         simpleMessageListenerContainer.setConnectionFactory(connectionFactory());
         simpleMessageListenerContainer.setQueues(myTimeSheetQueue());
-        simpleMessageListenerContainer.setMessageListener(new RabbitListenerForTimeSheetCreate());
+        simpleMessageListenerContainer.setMessageListener(rabbitListenerForTimeSheetCreate);
         return simpleMessageListenerContainer;
     }
 }

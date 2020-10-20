@@ -1,22 +1,22 @@
 package com.smarttimesheet.timesheetserver.service;
 
+import com.smarttimesheet.timesheetserver.controller.TimesheetController;
 import com.smarttimesheet.timesheetserver.domain.Details;
 import com.smarttimesheet.timesheetserver.domain.Timesheet;
 import com.smarttimesheet.timesheetserver.repository.TimeSheetMongoRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class TimesheetService {
+
     @Autowired
     TimeSheetMongoRepository repository;
 
@@ -95,5 +95,11 @@ public class TimesheetService {
         List<Timesheet> timeSheets = repository.findByName(name);
         // Get a random detail from the time sheet
         return timeSheets.get(rand.nextInt(timeSheets.size())).getDetails();
+    }
+
+    // @Author UGGL
+    // Save the edit timeSheet from rabbitMQ
+    public void handleRabbitMQMessage(Timesheet timeSheetFromRabbiMQ) {
+        repository.save(timeSheetFromRabbiMQ);
     }
 }
